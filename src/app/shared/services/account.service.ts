@@ -10,8 +10,8 @@ export class AccountService {
 
   token: Token;
 
-  login(username: string, password: string) {
-    return new Promise((resolve, reject) => {
+  async login(username: string, password: string) {
+    return await new Promise((resolve, reject) => {
       this.httpClient.post(this.globalVariables.url + '/token', 'username=' + username + '&password=' + password + '&grant_type=password')
         .toPromise()
         .then((response: Token) => {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account.service';
 import { GlobalVariablesService } from '../../services/global-variables.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,19 +10,35 @@ import { GlobalVariablesService } from '../../services/global-variables.service'
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private accountService: AccountService, private globalVariables: GlobalVariablesService) { }
+  constructor(
+    private accountService: AccountService,
+    private globalVariables: GlobalVariablesService,
+    private router: Router
+  ) { }
 
   url: string;
   username: string;
   password: string;
   protocol: string = 'http://';
+  invalidLogin: boolean = true;
 
   ngOnInit() {
   }
 
-  login() {
+  async login() {
     this.globalVariables.url = this.protocol + this.url;
-    this.accountService.login(this.username, this.password);
+    await this.accountService.login(this.username, this.password).then(
+      (response) => {
+        this.invalidLogin = false;
+      },
+      (error) => {
+        this.invalidLogin = true;
+      }
+    );
+
+    if (!this.invalidLogin) {
+      this.router.navigate(['home']);
+    }
   }
 
 }

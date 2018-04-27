@@ -1,0 +1,10 @@
+<div class="object">
+  <div class="props" *ngFor="let item of object | object">
+    <span class="badge">{{item.key}}</span>
+    <span>:</span>
+    <div class="value-div">
+      <ng-container *ngIf="!isObject(item.value)">{{item.value}}</ng-container>
+      <app-object *ngIf="isObject(item.value)" [object]="item.value"></app-object>
+    </div>
+  </div>
+</div>

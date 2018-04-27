@@ -1,0 +1,18 @@
+div.object {
+    font-family: RobotoMono !important;
+}
+div.props {
+    margin-bottom: 1px;
+    word-break: break-all;
+}
+span.badge {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    padding: 0px;
+    padding-left: 3px;
+    padding-right: 3px;
+    color: white;
+}
+div.value-div {
+    display: inline-flex;
+}
