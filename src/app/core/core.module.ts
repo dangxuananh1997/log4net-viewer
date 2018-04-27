@@ -7,12 +7,24 @@ import { NormalViewComponent } from './components/normal-view/normal-view.compon
 import { TableViewComponent } from './components/table-view/table-view.component';
 import { ObjectComponent } from './components/object/object.component';
 import { ObjectPipe } from './pipes/object.pipe';
+import { MatSidenavModule, MatCardModule, MatExpansionModule, MatFormFieldModule, MatButtonModule, MatInputModule } from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
-    CoreRoutingModule
+    CoreRoutingModule,
+    MatSidenavModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatButtonModule,
+    MatInputModule
   ],
-  declarations: [HomeComponent, NormalViewComponent, TableViewComponent, ObjectComponent, ObjectPipe]
+  declarations: [
+    HomeComponent,
+    NormalViewComponent,
+    TableViewComponent,
+    ObjectComponent,
+    ObjectPipe
+  ]
 })
 export class CoreModule { }

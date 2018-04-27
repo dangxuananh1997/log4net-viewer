@@ -1,0 +1,33 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav [mode]="'over'">
+    <p>
+      asdasd
+    </p>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <p>
+      <button mat-button (click)="sidenav.toggle()">Toggle</button>
+    </p>
+    <mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Log Filter
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <input matInput placeholder="First name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Age">
+    </mat-form-field>
+  </mat-expansion-panel>
+</mat-accordion>
+
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
