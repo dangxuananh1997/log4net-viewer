@@ -8,18 +8,17 @@ export class AccountService {
 
   constructor(private httpClient: HttpClient, private globalVariables: GlobalVariablesService) { }
 
-  token: Token;
-
   async login(username: string, password: string) {
     return await new Promise((resolve, reject) => {
-      this.httpClient.post(this.globalVariables.url + '/token', 'username=' + username + '&password=' + password + '&grant_type=password')
+      this.httpClient.post(this.globalVariables.getUrl() + '/token', 'username=' + username + '&password=' + password + '&grant_type=password')
         .toPromise()
         .then((response: Token) => {
-          this.token = response;
-          console.log(this.token);
-          localStorage.setItem('L4NV_TOKEN', JSON.stringify(this.token));
+          var token: Token;
+          token = response;
+          console.log(token);
+          localStorage.setItem('L4NV_TOKEN', JSON.stringify(token));
           var expiresDate: Date = new Date();
-          expiresDate.setSeconds(expiresDate.getSeconds() + this.token.expires_in - 60);
+          expiresDate.setSeconds(expiresDate.getSeconds() + token.expires_in - 60);
           localStorage.setItem('L4NV_TOKENEXPIRESTIME', expiresDate.toString());
           resolve();
         })

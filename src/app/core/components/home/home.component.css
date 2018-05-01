@@ -8,6 +8,31 @@
 .sidenav-container mat-sidenav-content {
   padding: 10px;
 }
+div.nav>button {
+  margin-bottom: 15px;
+}
+div.nav button.refresh-button {
+  float: right;
+}
+div.nav {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+}
+mat-grid-tile {
+  overflow: inherit;
+}
+div.search-box {
+  width: 100%;
+}
+div.search-box mat-form-field {
+  padding-left: 0;
+}
+mat-checkbox {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 mat-form-field {
   width: 100%;
   padding-left: 8px;
@@ -16,25 +41,38 @@ mat-form-field {
 input.search {
   width: 100%;
 }
-mat-grid-tile button {
-  margin-top: -10px;
-  width: 100%;
-  padding-left: 16px !important;
-}
-div.json-object {
-  margin-bottom: 7px;
-  font-family: RobotoMono !important;
-}
-td.no-pad-bottom {
-  padding-bottom: 0px !important;
-}
-mat-slide-toggle {
+mat-card.paginator {
+  padding: 0;
   position: absolute;
   left: 10px;
-  top: 100px;
+  right: 10px;
+  bottom: 30px;
 }
-@media screen and (max-width: 1350px) {
-  mat-slide-toggle {
-      top: 70px;
-  }
+div.log-list {
+  position: absolute;
+  top: 120px;
+  left: 10px;
+  right: 10px;
+  bottom: 100px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  transition-duration: 0.15s;
+}
+div.log-list.panel-is-open {
+  top: 265px;
+} 
+div.log-list div {
+  background: rgba(0, 0, 0, 0.3);
+  height: 1000px;
+}
+
+div.sidenav {
+  width: 400px;
+  padding: 10px;
+}
+div.sidenav div.change-view {
+  width: 100%;
+}
+div.sidenav button.logout {
+  float: right;
 }

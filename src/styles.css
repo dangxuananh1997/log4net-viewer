@@ -8,3 +8,30 @@
 * {
   font-family: 'RobotoCondensed';
 }
+
+:root {
+	--scroll-bar-size: 10px;
+	--scroll-bar-thumb-background-color: rgba(0, 0, 0, 0.2);
+	--scroll-bar-thumb-background-color-active: rgba(0, 0, 0, 0.5);
+}
+::-webkit-scrollbar {
+	width: var(--scroll-bar-size);
+	height: var(--scroll-bar-size);
+	background: transparent;
+	cursor: pointer;
+}
+::-webkit-scrollbar-thumb {
+	background-color: var(--scroll-bar-thumb-background-color);
+	border-color: transparent;
+	border-style: solid;
+	background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:active {
+	background-color: var(--scroll-bar-thumb-background-color-active);
+}
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+	border-width: 1px;
+	background-color: var(--scroll-bar-thumb-background-color-active);
+	cursor: pointer;
+}

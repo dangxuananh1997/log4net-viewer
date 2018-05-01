@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   async login() {
-    this.globalVariables.url = this.protocol + this.url;
+    this.globalVariables.setUrl(this.protocol + this.url);
     await this.accountService.login(this.username, this.password).then(
       (response) => {
         this.invalidLogin = false;

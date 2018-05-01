@@ -1,54 +1,103 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav [mode]="'over'">
-    <p>
-      asdasd
-    </p>
+  <mat-sidenav #sidenav [mode]="'over'" [opened]="true">
+    <div class="sidenav">
+      <div class="change-view">
+        <button mat-raised-button color="primary" (click)="changeView(true)" *ngIf="!isTableView">
+          <span>Table View</span>
+          <mat-icon>grid_on</mat-icon>
+        </button>
+        <button mat-raised-button color="primary" (click)="changeView(false)" *ngIf="isTableView">
+          <span>Normal View</span>
+          <mat-icon>line_weight</mat-icon>
+        </button>
+        <button mat-raised-button class="logout" (click)="logout()" color="warn">
+          <span>Log Out</span>
+          <mat-icon>keyboard_tab</mat-icon>
+        </button>
+      </div>
+      <div class="info">
+        <table>
+          <tbody>
+            <tr>
+              <td>Site</td>
+              <td>{{site}}</td>
+            </tr>
+            <tr>
+              <td>Username</td>
+              <td>{{username}}</td>
+            </tr>
+            <tr>
+              <td>Role</td>
+              <td>{{role}}</td>
+            </tr>
+            <tr>
+              <td>Expires In</td>
+              <td>{{expiresTime | date: 'medium'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <p>
-      <button mat-button (click)="sidenav.toggle()">Toggle</button>
-    </p>
-    <mat-accordion>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Log Filter
-      </mat-panel-title>
-    </mat-expansion-panel-header>
+    <div class="nav">
+      <button mat-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <button mat-raised-button class="refresh-button" (click)="refresh()">Refresh</button>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelIsOpen = true" (closed)="panelIsOpen = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Log Filter
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+  
+          <mat-grid-list cols="12" rowHeight="55px">
+            <mat-grid-tile colspan="6">
+              <div class="search-box">
+                <mat-form-field>
+                  <input matInput placeholder="Search" class="search" name="search" (keyup)="searchKeyup()" [(ngModel)]="search">
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+              </div>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="6">
+              <mat-form-field>
+                <mat-select placeholder="Level" (change)="changeLevel()" [(value)]="level">
+                  <mat-option *ngFor="let level of levels" [value]="level.value">
+                    {{level.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="6">
+              <mat-checkbox [color]="'primary'" (change)="changeStrictSearch()" [checked]="strictSearch">Exact Search</mat-checkbox>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="6">
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="date" (dateChange)="changeDate()">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
 
-    <mat-grid-list cols="12">
-      <mat-grid-tile colspan="5">
-        <mat-form-field>
-          <input matInput placeholder="Search Message" class="search" name="search" (keyup)="searchKeyup()" [(ngModel)]="search">
-          <mat-icon matSuffix>search</mat-icon>
-        </mat-form-field>
-        <mat-slide-toggle [color]="'primary'" (change)="changeStrictSearch()" [checked]="strictSearch">Strict Search</mat-slide-toggle>
-      </mat-grid-tile>
-      <mat-grid-tile colspan="3">
-        <mat-form-field>
-          <mat-select placeholder="Level" (change)="changeLevel()" [(value)]="level">
-            <mat-option *ngFor="let level of levels" [value]="level.value">
-              {{level.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile colspan=3>
-        <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="date" (dateChange)="changeDate()">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile colspan=1>
-        <button mat-raised-button (click)="refresh()">Refresh</button>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </mat-expansion-panel>
-</mat-accordion>
+    <div class="log-list" [ngClass]="{'panel-is-open': panelIsOpen}">
+      <div>
+        <app-normal-view *ngIf="!isTableView"></app-normal-view>
+        <app-table-view *ngIf="isTableView"></app-table-view>
+      </div>
+    </div>
 
-
+    <mat-card class="paginator">
+      <mat-paginator [pageIndex]="pageIndex" [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="paging($event)">
+      </mat-paginator>
+    </mat-card>
 
   </mat-sidenav-content>
 </mat-sidenav-container>

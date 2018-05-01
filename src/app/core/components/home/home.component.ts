@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { PageEvent, MatSidenav } from '@angular/material';
+import { GlobalVariablesService } from '../../../shared/services/global-variables.service';
+import { AccountService } from '../../../shared/services/account.service';
 
 @Component({
   selector: 'app-home',
@@ -7,12 +9,21 @@ import { PageEvent } from '@angular/material';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  @ViewChild('sidenav') sidenav: MatSidenav;
+  constructor(private globalVariables: GlobalVariablesService, private accountService: AccountService) { }
 
-  constructor() { }
-  panelOpenState: boolean = false;
+  //info
+  isTableView: boolean = false;
+  site: string;
+  username: string;
+  role: string;
+  expiresTime: Date;
+  
+  //search
   search: string = '';
   strictSearch: boolean = true;
   
+  //levels
   levels = [
     { name: 'All', value: '' },
     { name: 'Info', value: 'INFO' },
@@ -30,6 +41,11 @@ export class HomeComponent implements OnInit {
   pageSizeOptions = [5, 10, 25, 100];
 
   ngOnInit() {
+    this.site = this.globalVariables.getUrl();
+    this.username = this.accountService.getToken().userName;
+    this.role = this.accountService.getToken().roles;
+    this.expiresTime = this.accountService.getTokenExpiresTime();
+    console.log(this.site);
     this.getLog(this.pageIndex, this.pageSize);
   }
 
@@ -89,6 +105,15 @@ export class HomeComponent implements OnInit {
     //       }
     //     });
     //   });
+  }
+
+  changeView(isTableView: boolean) {
+    this.isTableView = isTableView;
+    this.sidenav.toggle();
+  }
+
+  logout() {
+    
   }
 
 }
