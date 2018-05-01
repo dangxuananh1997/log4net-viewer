@@ -1,7 +1,40 @@
-.example-container {
+.sidenav-container {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+}
+.sidenav-container mat-sidenav-content {
+  padding: 10px;
+}
+mat-form-field {
+  width: 100%;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+input.search {
+  width: 100%;
+}
+mat-grid-tile button {
+  margin-top: -10px;
+  width: 100%;
+  padding-left: 16px !important;
+}
+div.json-object {
+  margin-bottom: 7px;
+  font-family: RobotoMono !important;
+}
+td.no-pad-bottom {
+  padding-bottom: 0px !important;
+}
+mat-slide-toggle {
+  position: absolute;
+  left: 10px;
+  top: 100px;
+}
+@media screen and (max-width: 1350px) {
+  mat-slide-toggle {
+      top: 70px;
+  }
 }
