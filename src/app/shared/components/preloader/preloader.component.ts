@@ -13,10 +13,10 @@ export class PreloaderComponent implements OnInit {
   hidden: boolean = true;
 
   ngOnInit() {
-    this.globalVariables.hidePreloader.subscribe((bool) => {
+    this.globalVariables.hidePreloader.subscribe((isHidden) => {
       setTimeout(() => {
-        this.hidden = bool;
-      }, 300);
+        this.hidden = isHidden;
+      }, isHidden ? 300 : 0);
     })
   }
 

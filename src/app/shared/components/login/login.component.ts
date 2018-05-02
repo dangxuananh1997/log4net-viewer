@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
   invalidLogin: boolean = true;
 
   ngOnInit() {
+    var tmpUrl = this.globalVariables.getUrl();
+    this.url = tmpUrl.substring(tmpUrl.lastIndexOf('/') + 1, tmpUrl.length);
   }
 
   async login() {

@@ -8,7 +8,8 @@ import { NormalViewComponent } from './components/normal-view/normal-view.compon
 import { TableViewComponent } from './components/table-view/table-view.component';
 import { ObjectComponent } from './components/object/object.component';
 import { ObjectPipe } from './pipes/object.pipe';
-import { MatSidenavModule, MatCardModule, MatExpansionModule, MatFormFieldModule, MatButtonModule, MatInputModule, MatGridListModule, MatIconModule, MatSlideToggleModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, MatPaginatorModule } from '@angular/material';
+import { MatSidenavModule, MatCardModule, MatExpansionModule, MatFormFieldModule, MatButtonModule, MatInputModule, MatGridListModule, MatIconModule, MatSlideToggleModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, MatPaginatorModule, MatTableModule } from '@angular/material';
+import { LogService } from './services/log.service';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { MatSidenavModule, MatCardModule, MatExpansionModule, MatFormFieldModule
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTableModule
   ],
   declarations: [
     HomeComponent,
@@ -37,6 +39,7 @@ import { MatSidenavModule, MatCardModule, MatExpansionModule, MatFormFieldModule
     ObjectPipe
   ],
   providers: [
+    LogService
   ]
 })
 export class CoreModule { }

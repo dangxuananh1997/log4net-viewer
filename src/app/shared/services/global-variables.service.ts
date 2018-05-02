@@ -12,7 +12,7 @@ export class GlobalVariablesService {
   }
 
   getUrl(): string {
-    return localStorage.getItem('L4NV_SITE');
+    return localStorage.getItem('L4NV_SITE') != null ? localStorage.getItem('L4NV_SITE') : '';
   }
 
 }

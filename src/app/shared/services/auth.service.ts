@@ -12,9 +12,8 @@ export class AuthService implements CanActivate {
     var expectedRole: string = activatedRouteSnapshot.data.routeRole;
     var userToken: Token = this.accountService.getToken();
     var tokenExpiresTime: Date = this.accountService.getTokenExpiresTime();
-
     var isAuth: boolean = false;
-    if (userToken != null && userToken.roles == expectedRole && tokenExpiresTime >= new Date())
+    if (userToken != null && (userToken.roles == expectedRole || userToken.roles == undefined) && tokenExpiresTime >= new Date())
       isAuth = true
 
     if (!isAuth) {

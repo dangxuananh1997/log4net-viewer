@@ -1,0 +1,78 @@
+* {
+  word-break: break-all;
+}
+.table-container {
+  flex-direction: column;
+  min-width: 300px;
+  display: flex;
+}
+.mat-table {
+  overflow: auto;
+  max-height: 90% !important;
+}
+mat-card {
+  margin-bottom: 16px;
+}
+mat-row.info {
+  background: #98ee99;
+}
+mat-row.debug {
+  background: #73e8ff;
+}
+mat-row.warn {
+  background: #ffff72;
+}
+mat-row.error {
+  background: #ffd149;
+}
+mat-row.fatal {
+  background: #ff7961;
+}
+mat-card-title {
+  margin-bottom: 6px;
+}
+mat-card-content {
+  font-size: 18px;
+}
+td {
+  padding: 6px;
+}
+table {
+  border-collapse: collapse;
+}
+table, th, td {
+  border: 1px solid black;
+}
+mat-grid-tile button {
+  margin-top: -10px;
+  width: 100%;
+  padding-left: 16px !important;
+}
+.mat-row, .mat-header-row {
+  padding-left: 16px;
+}
+.mat-column-Level {
+  max-width: 50px;
+  padding-right: 12px;
+}
+.mat-column-Date {
+  max-width: 128px;
+  padding-right: 12px;
+}
+.mat-column-Logger {
+  max-width: 350px;
+  padding-right: 12px;
+}
+.mat-column-Message {
+  padding-right: 12px;
+}
+.mat-column-JSON {
+  min-width: 400px;
+  padding-right: 12px;
+}
+.mat-column-Exception {
+  padding-right: 12px;
+}
+mat-cell {
+  padding: 6px;
+}

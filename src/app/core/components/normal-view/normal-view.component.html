@@ -1,3 +1,26 @@
-<span>
-  normal-view works!
-</span>
+<mat-card *ngFor="let log of logList" class="{{log.Level | lowercase}} mat-card">
+  <mat-card-title>
+    <b>{{log.Level}} - {{log.Date | date:'HH:mm dd/MM/yyyy'}}</b>
+  </mat-card-title>
+  <mat-card-content>
+    <table>
+      <tr>
+        <td valign="top">Logger:</td>
+        <td valign="top">{{log.Logger}}</td>
+      </tr>
+      <tr>
+        <td valign="top">Message:</td>
+        <td valign="top" class="word-break">{{log.Message}}</td>
+      </tr>
+      <tr>
+        <td valign="top">JSON:</td>
+        <td valign="top" class="no-pad-bottom">
+          <app-object [object]="log.JsonObject"></app-object>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">Exception:</td>
+        <td valign="top">{{log.Exception}}</td>
+      </tr>
+    </table>
+  </mat-card-content>

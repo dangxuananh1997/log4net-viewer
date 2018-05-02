@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PageEvent, MatSidenav } from '@angular/material';
+import { PageEvent, MatSidenav, MatTableDataSource } from '@angular/material';
 import { GlobalVariablesService } from '../../../shared/services/global-variables.service';
 import { AccountService } from '../../../shared/services/account.service';
+import { Log } from '../../models/log';
+import { LogService } from '../../services/log.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +12,7 @@ import { AccountService } from '../../../shared/services/account.service';
 })
 export class HomeComponent implements OnInit {
   @ViewChild('sidenav') sidenav: MatSidenav;
-  constructor(private globalVariables: GlobalVariablesService, private accountService: AccountService) { }
+  constructor(private globalVariables: GlobalVariablesService, private accountService: AccountService, private logService: LogService) { }
 
   //info
   isTableView: boolean = false;
@@ -19,9 +21,15 @@ export class HomeComponent implements OnInit {
   role: string;
   expiresTime: Date;
   
+  //data
+  logList: Log[];
+
   //search
   search: string = '';
   strictSearch: boolean = true;
+
+  //date
+  date: Date = new Date();
   
   //levels
   levels = [
@@ -45,7 +53,6 @@ export class HomeComponent implements OnInit {
     this.username = this.accountService.getToken().userName;
     this.role = this.accountService.getToken().roles;
     this.expiresTime = this.accountService.getTokenExpiresTime();
-    console.log(this.site);
     this.getLog(this.pageIndex, this.pageSize);
   }
 
@@ -85,26 +92,27 @@ export class HomeComponent implements OnInit {
   }
 
   getLog(pageIndex?: number, pageSize?: number) {
-    // pageIndex = typeof pageIndex == 'undefined' ? 1 : pageIndex + 1;
-    // pageSize = typeof pageSize == 'undefined' ? 10 : pageSize;
-    // var search = this.search;
-    // var date = $('input[name=date]').val();
-    // var level = this.level;
-    // this.logService.read(pageSize, pageIndex, level, search, date + '', this.strictSearch)
-    //   .then(response => {
-    //     this.logList = response.data;
-    //     this.length = response.length;
-    //     this.logList.forEach(element => {
-    //       var first = element.Message.indexOf('{');
-    //       var last = element.Message.lastIndexOf('}');
-    //       if (first != -1 && last != -1) {
-    //         element.JsonObject = JSON.parse(element.Message.substring(first, last + 1));
-    //         element.Message = element.Message.substring(0, first - 2); //remove the ':'
-    //       } else {
-    //         element.JsonObject = JSON.parse('{}');
-    //       }
-    //     });
-    //   });
+    pageIndex = typeof pageIndex == 'undefined' ? 1 : pageIndex + 1;
+    pageSize = typeof pageSize == 'undefined' ? 10 : pageSize;
+    var search = this.search;
+    var date = this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate();
+    var level = this.level;
+    this.logService.getLog(pageSize, pageIndex, level, search, date + '', this.strictSearch)
+      .then(response => {
+        this.logList = response.data;
+        this.length = response.length;
+        this.logList.forEach(element => {
+          var first = element.Message.indexOf('{');
+          var last = element.Message.lastIndexOf('}');
+          if (first != -1 && last != -1) {
+            element.JsonObject = JSON.parse(element.Message.substring(first, last + 1));
+            element.Message = element.Message.substring(0, first - 2); //remove the ':'
+          } else {
+            element.JsonObject = JSON.parse('{}');
+          }
+        });
+      });
+    // console.log(date);
   }
 
   changeView(isTableView: boolean) {
@@ -113,7 +121,7 @@ export class HomeComponent implements OnInit {
   }
 
   logout() {
-    
+    this.accountService.logout();
   }
 
 }

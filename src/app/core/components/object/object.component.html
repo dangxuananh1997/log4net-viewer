@@ -3,7 +3,7 @@
     <span class="badge">{{item.key}}</span>
     <span>:</span>
     <div class="value-div">
-      <ng-container *ngIf="!isObject(item.value)">{{item.value}}</ng-container>
+      <span *ngIf="!isObject(item.value)">{{item.value}}</span>
       <app-object *ngIf="isObject(item.value)" [object]="item.value"></app-object>
     </div>
   </div>

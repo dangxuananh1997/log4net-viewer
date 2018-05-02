@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav [mode]="'over'" [opened]="true">
+  <mat-sidenav #sidenav [mode]="'over'">
     <div class="sidenav">
       <div class="change-view">
         <button mat-raised-button color="primary" (click)="changeView(true)" *ngIf="!isTableView">
@@ -77,7 +77,7 @@
             </mat-grid-tile>
             <mat-grid-tile colspan="6">
               <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="date" (dateChange)="changeDate()">
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="date" (dateChange)="changeDate()" [(ngModel)]="date">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
@@ -88,10 +88,8 @@
     </div>
 
     <div class="log-list" [ngClass]="{'panel-is-open': panelIsOpen}">
-      <div>
-        <app-normal-view *ngIf="!isTableView"></app-normal-view>
-        <app-table-view *ngIf="isTableView"></app-table-view>
-      </div>
+      <app-normal-view *ngIf="!isTableView" [logList]="logList"></app-normal-view>
+      <app-table-view *ngIf="isTableView" [logList]="logList"></app-table-view>
     </div>
 
     <mat-card class="paginator">
