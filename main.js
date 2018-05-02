@@ -6,7 +6,7 @@ const url = require('url')
 let win
 
 function createWindow() {
-  win = new BrowserWindow({ width: 800, height: 600 })
+  win = new BrowserWindow({ width: 1280, height: 720, icon: __dirname + 'dist/assets/images/log.png' })
 
   // load the dist folder from Angular
   win.loadURL(url.format({

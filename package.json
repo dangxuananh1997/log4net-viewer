@@ -12,7 +12,7 @@
     "e2e": "ng e2e",
     "electron": "ng build && electron .",
     "electron-aot": "ng build --prod && electron .",
-    "package": "electron-packager . Log4netViewer"
+    "package": "electron-packager . Log4NetViewer --overwrite --icon=dist/favicon.ico"
   },
   "private": true,
   "dependencies": {

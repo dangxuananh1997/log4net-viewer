@@ -51,6 +51,9 @@ mat-grid-tile button {
 .mat-row, .mat-header-row {
   padding-left: 16px;
 }
+.mat-row {
+  align-items: flex-start;
+}
 .mat-column-Level {
   max-width: 50px;
   padding-right: 12px;
@@ -67,12 +70,13 @@ mat-grid-tile button {
   padding-right: 12px;
 }
 .mat-column-JSON {
-  min-width: 400px;
+  min-width: 600px;
   padding-right: 12px;
 }
 .mat-column-Exception {
   padding-right: 12px;
 }
 mat-cell {
-  padding: 6px;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }

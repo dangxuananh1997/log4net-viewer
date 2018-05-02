@@ -23,3 +23,6 @@ button {
   margin-bottom: 10px !important;
   border: 1px solid #673ab7;
 }
+mat-error {
+  margin-top: -1.25em;
+}

@@ -20,7 +20,8 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   protocol: string = 'http://';
-  invalidLogin: boolean = true;
+  invalidLogin: boolean = false;
+  invalidUrl: boolean = false;
 
   ngOnInit() {
     var tmpUrl = this.globalVariables.getUrl();
@@ -32,13 +33,21 @@ export class LoginComponent implements OnInit {
     await this.accountService.login(this.username, this.password).then(
       (response) => {
         this.invalidLogin = false;
+        this.invalidUrl = false;
       },
       (error) => {
-        this.invalidLogin = true;
+        if (error.status == 400) {
+          this.invalidLogin = true;
+          this.invalidUrl = false;
+        }
+        else {
+          this.invalidLogin = false;
+          this.invalidUrl = true;
+        }
       }
     );
 
-    if (!this.invalidLogin) {
+    if (!this.invalidLogin && !this.invalidUrl) {
       this.router.navigate(['home']);
     }
   }

@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
   @ViewChild('sidenav') sidenav: MatSidenav;
   constructor(private globalVariables: GlobalVariablesService, private accountService: AccountService, private logService: LogService) { }
 
+  panelIsOpen = false;
+
   //info
   isTableView: boolean = false;
   site: string;

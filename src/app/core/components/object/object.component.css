@@ -3,8 +3,8 @@ div.object * {
 }
 div.props {
   margin-bottom: 1px;
-  word-break: break-all;
-  word-wrap: break-word;
+  display: flex;
+  flex-direction: row;
 }
 span.badge {
   background: rgba(0, 0, 0, 0.4);
@@ -13,7 +13,7 @@ span.badge {
   padding-left: 3px;
   padding-right: 3px;
   color: white;
-  margin-right: -10px;
+  word-break: keep-all;
 }
 div.value-div {
   display: inline-flex;

@@ -7,9 +7,9 @@
       <mat-card-title>Log4net Viewer</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <mat-grid-list cols="4">
+        <mat-grid-list cols="4" rowHeight="60px">
           <mat-grid-tile>
-            <mat-form-field>
+            <mat-form-field [ngClass]="{'mat-form-field-invalid': invalidUrl}">
               <mat-select [placeholder]="'Protocol'" [(ngModel)]="protocol" name="protocol" [(value)]="protocol">
                 <mat-option *ngFor="let type of ['http://', 'https://']" [value]="type">
                   {{ type }}
@@ -18,23 +18,19 @@
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="3">
-            <mat-form-field>
+            <mat-form-field [ngClass]="{'mat-form-field-invalid': invalidUrl}">
               <input matInput placeholder="IP Address/Domain" [(ngModel)]="url" name="url">
             </mat-form-field>
           </mat-grid-tile>
         </mat-grid-list>
-      <mat-form-field>
+      <mat-error *ngIf="invalidUrl">Invalid URL</mat-error>
+      <mat-form-field [ngClass]="{'mat-form-field-invalid': invalidLogin}">
         <input matInput placeholder="Username" [(ngModel)]="username" name="username">
       </mat-form-field>
-      <mat-error *ngIf="0">
-        Invalid Username or Password!
-      </mat-error>
-      <mat-form-field>
+      <mat-form-field [ngClass]="{'mat-form-field-invalid': invalidLogin}">
         <input matInput placeholder="Password" type="password" [(ngModel)]="password" name="password">
       </mat-form-field>
-      <mat-error *ngIf="0">
-        Invalid Username or Password!
-      </mat-error>
+      <mat-error *ngIf="invalidLogin">Invalid Username or Password or not an Admin account!</mat-error>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button color="primary">LOGIN</button>

@@ -57,6 +57,8 @@ div.log-list {
   overflow-x: hidden;
   overflow-y: scroll;
   transition-duration: 0.15s;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
 div.log-list.panel-is-open {
   top: 265px;

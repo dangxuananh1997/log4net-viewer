@@ -1,10 +1,14 @@
 <div class="object">
   <div class="props" *ngFor="let item of object | object">
-    <span class="badge">{{item.key}}</span>
-    <span>:</span>
+    <div>
+      <span class="badge">{{item.key}}</span>
+    </div>
     <div class="value-div">
-      <span *ngIf="!isObject(item.value)">{{item.value}}</span>
-      <app-object *ngIf="isObject(item.value)" [object]="item.value"></app-object>
+      <span *ngIf="!isObject(item.value)">: {{item.value}}</span>
+      <ng-container *ngIf="isObject(item.value)">
+        <span>: </span>
+        <app-object [object]="item.value"></app-object>
+      </ng-container>
     </div>
   </div>
 </div>

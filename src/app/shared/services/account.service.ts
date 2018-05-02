@@ -23,8 +23,7 @@ export class AccountService {
           resolve();
         })
         .catch((error) => {
-          console.log(error);
-          reject();
+          reject(error);
         });
     });
   }
