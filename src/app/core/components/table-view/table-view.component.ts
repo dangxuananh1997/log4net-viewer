@@ -9,14 +9,13 @@ import { style, animate, animation, animateChild, useAnimation, group, sequence,
   styleUrls: ['./table-view.component.css'],
   animations: [
     trigger('list', [
-      state('in', style({})),
       transition(':enter', [
         query('@item', stagger(10, animateChild()))
       ])
     ]),
     trigger('item', [
       transition(':enter', [
-        style({ transform: 'translateY(-60%)', opacity: 0 }),
+        style({ transform: 'translateY(-60px)', opacity: 0 }),
         animate('0.2s cubic-bezier(.8,-0.6,0.2,1.5)', style({ transform: 'translateY(0)', opacity: 1 }))
       ])
     ])

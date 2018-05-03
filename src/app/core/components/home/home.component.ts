@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   panelIsOpen = false;
 
   //info
-  isTableView: boolean = true;
+  isTableView: boolean = false;
   site: string;
   username: string;
   role: string;

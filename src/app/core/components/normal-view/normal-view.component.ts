@@ -8,14 +8,13 @@ import { style, animate, animation, animateChild, useAnimation, group, sequence,
   styleUrls: ['./normal-view.component.css'],
   animations: [
     trigger('list', [
-      state('in', style({  })),
       transition(':enter', [
         query('@item', stagger(100, animateChild()))
       ])
     ]),
     trigger('item', [
       transition(':enter', [
-        style({ transform: 'translateY(-100%)', opacity: 0 }),
+        style({ transform: 'translateY(-100px)', opacity: 0 }),
         animate('0.6s cubic-bezier(.8,-0.6,0.2,1.5)', style({ transform: 'translateY(0)', opacity: 1 }))
       ])
     ])
