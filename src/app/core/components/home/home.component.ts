@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   panelIsOpen = false;
 
   //info
-  isTableView: boolean = false;
+  isTableView: boolean = true;
   site: string;
   username: string;
   role: string;
@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   strictSearch: boolean = true;
 
   //date
-  date: Date = new Date();
+  date: Date = null;
   
   //levels
   levels = [
@@ -94,10 +94,11 @@ export class HomeComponent implements OnInit {
   }
 
   getLog(pageIndex?: number, pageSize?: number) {
+    this.logList = undefined;
     pageIndex = typeof pageIndex == 'undefined' ? 1 : pageIndex + 1;
     pageSize = typeof pageSize == 'undefined' ? 10 : pageSize;
     var search = this.search;
-    var date = this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate();
+    var date = this.date != null ? this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate() : '';
     var level = this.level;
     this.logService.getLog(pageSize, pageIndex, level, search, date + '', this.strictSearch)
       .then(response => {

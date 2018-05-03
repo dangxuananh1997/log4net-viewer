@@ -1,5 +1,5 @@
 mat-card {
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 mat-card:last-child {
   margin-bottom: 0;

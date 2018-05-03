@@ -88,8 +88,10 @@
     </div>
 
     <div class="log-list" [ngClass]="{'panel-is-open': panelIsOpen}">
-      <app-normal-view *ngIf="!isTableView" [logList]="logList"></app-normal-view>
-      <app-table-view *ngIf="isTableView" [logList]="logList"></app-table-view>
+      <ng-container *ngIf="logList != undefined">
+        <app-normal-view *ngIf="!isTableView" [logList]="logList"></app-normal-view>
+        <app-table-view *ngIf="isTableView" [logList]="logList"></app-table-view>
+      </ng-container>
     </div>
 
     <mat-card class="paginator">
