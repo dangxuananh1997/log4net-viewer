@@ -6,6 +6,7 @@ export class GlobalVariablesService {
   constructor() { }
 
   public hidePreloader = new EventEmitter<boolean>();
+  public progress = new EventEmitter<number>();
 
   setUrl(site: string): void {
     localStorage.setItem('L4NV_SITE', site);

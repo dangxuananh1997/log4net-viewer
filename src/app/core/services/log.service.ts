@@ -17,7 +17,8 @@ export class LogService {
         Search: search.toString(),
         Date: date.toString(),
         StrictSearch: String(strictSearch)
-      }
+      },
+      reportProgress: true
     }).toPromise().then((response: Data) => response as Data);
   }
 
